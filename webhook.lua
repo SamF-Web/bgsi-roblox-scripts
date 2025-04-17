@@ -1,3 +1,4 @@
+-- Check for supported HTTP request
 local httpRequest =
     (syn and syn.request) or
     (http and http.request) or
@@ -41,11 +42,12 @@ local petImages = {
     ["King Doggy"] = "https://static.wikia.nocookie.net/bgs-infinity/images/a/a8/King_Doggy.png/revision/latest?cb=20250412152038"
 }
 
-local function sendWebhook(name, rarity, image, chances)
+local function sendWebhook(name, rarity, image)
     local data = {
+        ["content"] = "@everyone",
         ["embeds"] = {{
             ["title"] = (petImages[name] and "⭐ Legendary Pet Hatched" or "🌟 Secret Pet Hatched"),
-            ["description"] = string.format("**__Pet Name:__** %s\n**__Pet Rarity:__** %s\n**__Catch Date:__** %s\n**__Drop Chances:__** %s", name, rarity, os.date("%Y-%m-%d %H:%M:%S"), chances),
+            ["description"] = string.format("**__Pet Name:__** %s\n**__Pet Rarity:__** %s\n**__Catch Date:__** %s", name, rarity, os.date("%Y-%m-%d %H:%M:%S")),
             ["color"] = 28927,
             ["footer"] = {
                 ["text"] = "Pet Hatched By: " .. player.Name
@@ -66,6 +68,7 @@ local function sendWebhook(name, rarity, image, chances)
     })
 end
 
+-- Monitor GUI text changes
 local lastPet = ""
 
 local function monitorHatch()
@@ -80,22 +83,19 @@ local function monitorHatch()
 
     local label = template:FindFirstChild("Label")
     local rarity = template:FindFirstChild("Rarity")
-    local chances = template:FindFirstChild("Chance")
 
     if label and rarity then
         local name = label.Text
         local rarityText = rarity.Text
-        local chanceText = chances.Text
 
         if name ~= lastPet then
             lastPet = name
             if petImages[name] then
-                sendWebhook(name, rarityText, petImages[name], chanceText)
+                sendWebhook(name, rarityText, petImages[name])
                 print("📤 Sent webhook for pet:", name)
             end
         end
     end
 end
-
 print("Running: Webhook Alerts")
 runService.RenderStepped:Connect(monitorHatch)
