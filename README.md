@@ -3,7 +3,7 @@
 
 This is a archive of my personal scripts for BGSI.
 
-There is another Menu included in the `main.lua` which is MoonX.
+There is another Menu included in the `main.lua` which is MoonX. - This has been removed
 
 ## Installation
 
