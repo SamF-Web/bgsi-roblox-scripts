@@ -42,7 +42,7 @@ Use for your favorite executor and copy and paste `main.lua` into the console an
 ## Explaination on Webhook
 Webhook only sends Legendary and Secret. Thats it really simple.
 
-![WebhookDEMO1](https://img.aliensbald.com/u/6rdh9Z.png)
+![WebhookDEMO1](https://img.aliensbald.com/u/mVaVL8.png)
 
 
 ## License
