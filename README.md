@@ -1,5 +1,6 @@
 # Bubble Gum Simulator INFINITY Scripts
 ![Static Badge](https://img.shields.io/badge/AWP_BUILD-VALID-green)![Static Badge](https://img.shields.io/badge/VEGAX_BUILD-VALID-green)
+
 This is a archive of my personal scripts for BGSI.
 
 There is another Menu included in the `main.lua` which is MoonX.
