@@ -11,31 +11,32 @@ Use for your favorite executor and copy and paste `main.lua` into the console an
 
 ```lua
 --// Loader
-getgenv().Config = {
-    Webhook = "https://discord.com/api/webhooks/",
-    ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
-}
-
-if rconsoleclear then rconsoleclear() end
-
-print("Starting: Hatching Scripts")
-loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
+ getgenv().Config = {
+     Webhook = "https://discord.com/api/webhooks/",
+     ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
+     AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua"
+ }
+ 
+ print("Starting: Hatching Scripts")
+ loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
+ loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
 ```
 
 ## For ONLY Webhook and not MoonX
 
 ```lua
 --// Loader
-getgenv().Config = {
-    Webhook = "https://discord.com/api/webhooks/",
-    ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
-}
-
-if rconsoleclear then rconsoleclear() end
-
-print("Starting: Hatching Scripts")
-loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
+ getgenv().Config = {
+     Webhook = "https://discord.com/api/webhooks/",
+     ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
+     AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua"
+ }
+ 
+ print("Starting: Hatching Scripts")
+ loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
+ loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
+ --// MoonX //loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
 ```
 
 ## Explaination on Webhook
