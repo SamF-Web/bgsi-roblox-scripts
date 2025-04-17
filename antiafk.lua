@@ -1,10 +1,10 @@
 local vu = game:GetService("VirtualUser")
-local player = game:GetService("Players").LocalPlayer
+local plr = game:GetService("Players").LocalPlayer
 
-player.Idled:Connect(function()
-    local x = math.random(0, 1000)
-    local y = math.random(0, 700)
-    vu:Button1Down(Vector2.new(x, y), workspace.CurrentCamera.CFrame)
-    task.wait(0.2)
-    vu:Button1Up(Vector2.new(x, y), workspace.CurrentCamera.CFrame)
+plr.Idled:Connect(function()
+    task.wait(1)
+    vu:CaptureController()
+    vu:ClickButton2(Vector2.new(math.random(0, 1000), math.random(0, 700)))
 end)
+
+print("Running: AntiAFK")
