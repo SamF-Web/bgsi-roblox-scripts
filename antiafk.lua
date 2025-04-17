@@ -8,7 +8,7 @@ local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local keys = {"W", "A", "S", "D"}
-local moveDistance = 5  -- studs
+local moveDistance = 1  -- studs
 local interval = 60  -- seconds between AFK moves
 
 local function pressKey(key)
