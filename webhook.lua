@@ -1,4 +1,3 @@
--- Check for supported HTTP request
 local httpRequest =
     (syn and syn.request) or
     (http and http.request) or
@@ -46,7 +45,7 @@ local function sendWebhook(name, rarity, image)
     local data = {
         ["embeds"] = {{
             ["title"] = (petImages[name] and "⭐ Legendary Pet Hatched" or "🌟 Secret Pet Hatched"),
-            ["description"] = string.format("**__Pet Name:__** %s\n**__Pet Rarity:__** %s\n**__Catch Date:__** %s", name, rarity, os.date("%Y-%m-%d %H:%M:%S")),
+            ["description"] = string.format("@everyone\n**__Pet Name:__** %s\n**__Pet Rarity:__** %s\n**__Catch Date:__** %s", name, rarity, os.date("%Y-%m-%d %H:%M:%S")),
             ["color"] = 28927,
             ["footer"] = {
                 ["text"] = "Pet Hatched By: " .. player.Name
@@ -67,7 +66,6 @@ local function sendWebhook(name, rarity, image)
     })
 end
 
--- Monitor GUI text changes
 local lastPet = ""
 
 local function monitorHatch()
