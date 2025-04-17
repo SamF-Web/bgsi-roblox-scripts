@@ -46,7 +46,7 @@ local fallbackImage = "https://static.wikia.nocookie.net/bgs-infinity/images/7/7
 local recentPets = {}
 
 local function isRecent(name)
-    if recentPets[name] and tick() - recentPets[name] < 2 then
+    if recentPets[name] and tick() - recentPets[name] < 5 then
         return true
     end
     recentPets[name] = tick()
