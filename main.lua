@@ -1,7 +1,7 @@
 --// Loader
 getgenv().Config = {
     Webhook = "Webhook URL",
-    ScriptURL = "https://russia.1ms.network/rblx/bbsi.lua",
+    ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
     AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua"
 }
 
