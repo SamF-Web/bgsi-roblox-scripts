@@ -1,5 +1,4 @@
 print("Running: AntiAFK")
--- Anti-AFK Script
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -37,9 +36,9 @@ local function movePlayerAwayAndBack()
     humanoidRootPart.CFrame = originalCFrame + direction
     task.wait(1)
     humanoidRootPart.CFrame = originalCFrame
+    pressKey("R")
 end
 
--- Loop
 while true do
     task.wait(interval)
     pcall(movePlayerAwayAndBack)
