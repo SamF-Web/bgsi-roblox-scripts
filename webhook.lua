@@ -44,7 +44,6 @@ local petImages = {
 
 local function sendWebhook(name, rarity, image)
     local data = {
-        ["content"] = "@everyone",
         ["embeds"] = {{
             ["title"] = (petImages[name] and "⭐ Legendary Pet Hatched" or "🌟 Secret Pet Hatched"),
             ["description"] = string.format("**__Pet Name:__** %s\n**__Pet Rarity:__** %s\n**__Catch Date:__** %s", name, rarity, os.date("%Y-%m-%d %H:%M:%S")),
@@ -97,5 +96,6 @@ local function monitorHatch()
         end
     end
 end
+
 print("Running: Webhook Alerts")
 runService.RenderStepped:Connect(monitorHatch)
