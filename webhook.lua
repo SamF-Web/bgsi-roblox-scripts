@@ -42,14 +42,14 @@ local petImages = {
 -- Fallback image
 local fallbackImage = "https://static.wikia.nocookie.net/bgs-infinity/images/7/73/Common_Pet.png"
 
--- Pet cache to avoid duplicate webhook spams
-local recentPets = {}
+local recentFrames = {}
 
-local function isRecent(name)
-    if recentPets[name] and tick() - recentPets[name] < 5 then
+local function isRecentFrame(frame)
+    local id = tostring(frame)
+    if recentFrames[id] and tick() - recentFrames[id] < 10 then
         return true
     end
-    recentPets[name] = tick()
+    recentFrames[id] = tick()
     return false
 end
 
@@ -103,22 +103,17 @@ local function monitorHatch()
     local hatch = gui:FindFirstChild("Hatching")
     if not hatch then return end
 
-    for _, child in ipairs(hatch:GetChildren()) do
-        if child:IsA("Frame") and child:FindFirstChild("Label") and child:FindFirstChild("Rarity") then
-            local label = child:FindFirstChild("Label")
-            local rarity = child:FindFirstChild("Rarity")
-            local chanceTag = child:FindFirstChild("Chance")
+    for _, frame in ipairs(hatch:GetChildren()) do
+        if frame:IsA("Frame") and frame:FindFirstChild("Label") and frame:FindFirstChild("Rarity") then
+            local name = frame.Label.Text
+            local rarity = frame.Rarity.Text
+            local chance = frame:FindFirstChild("Chance") and frame.Chance.Text or nil
+            local rarityLower = rarity:lower()
 
-            local name = label.Text
-            local rarityText = rarity.Text
-            local rarityLower = rarityText:lower()
-
-            -- Only send for high rarities
             if rarityLower:find("legendary") or rarityLower:find("secret") or rarityLower:find("mythic") then
-                if not isRecent(name) then
+                if not isRecentFrame(frame) then
                     local image = petImages[name] or fallbackImage
-                    local chance = chanceTag and chanceTag.Text or nil
-                    sendWebhook(name, rarityText, image, chance)
+                    sendWebhook(name, rarity, image, chance)
                     print("📤 Sent webhook for:", name)
                 end
             end
