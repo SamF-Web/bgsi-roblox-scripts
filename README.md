@@ -23,10 +23,9 @@ Use for your favorite executor and copy and paste `main.lua` into the console an
  print("Starting: Hatching Scripts")
  loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
  loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
- loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
 ```
 
-## For ONLY Webhook and not MoonX
+## For MoonX + BSGI Scripts
 
 ```lua
 --// Loader
@@ -39,7 +38,7 @@ Use for your favorite executor and copy and paste `main.lua` into the console an
  print("Starting: Hatching Scripts")
  loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
  loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
- --// MoonX //loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
 ```
 
 ## Explaination on Webhook
