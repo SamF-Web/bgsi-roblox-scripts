@@ -1,5 +1,6 @@
 # Bubble Gum Simulator INFINITY Scripts
-![Static Badge](https://img.shields.io/badge/AWP_BUILD-VALID-green) ![Static Badge](https://img.shields.io/badge/VEGAX_BUILD-VALID-green)
+![VEGAX](https://badge.ttsalpha.com/api?icon=android&label=VEGAX&status=WORKING&color=2bc440&iconColor=ffffff) ![CODEX](https://badge.ttsalpha.com/api?icon=android&label=CODEX&status=WORKING&color=2bc440&iconColor=ffffff) ![Xeno](https://badge.ttsalpha.com/api?icon=nvidia&label=Xeno&status=WORKING&color=2bc440&iconColor=ffffff) ![AWP](https://badge.ttsalpha.com/api?icon=nvidia&label=AWP&status=WORKING&color=2bc440&iconColor=ffffff) 
+
 
 This is a archive of my personal scripts for BGSI.
 
