@@ -4,10 +4,6 @@
 
 This is a archive of my personal scripts for BGSI.
 
-There is another Menu included in the `main.lua` which is MoonX. - This has been removed
-
-If you need support dm @portmongle on discord
-
 ## Installation
 
 Use for your favorite executor and copy and paste `main.lua` into the console and execute.
