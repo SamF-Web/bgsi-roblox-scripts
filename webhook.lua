@@ -113,11 +113,6 @@ local function monitorHatch()
 
     for _, frame in ipairs(hatch:GetChildren()) do
         if frame:IsA("Frame") and frame:FindFirstChild("Label") and frame:FindFirstChild("Rarity") then
-            local deletedTag = frame:FindFirstChild("Deleted")
-            if deletedTag and deletedTag:IsA("TextLabel") and deletedTag.Text == "(Auto Deleted)" then
-                continue
-            end
-
             local name = frame.Label.Text
             local rarity = frame.Rarity.Text
             local chance = frame:FindFirstChild("Chance") and frame.Chance.Text or nil
