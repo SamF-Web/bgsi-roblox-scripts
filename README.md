@@ -13,32 +13,38 @@ If you need support dm @portmongle on discord
 Use for your favorite executor and copy and paste `main.lua` into the console and execute.
 
 ```lua
---// Loader
- getgenv().Config = {
-     Webhook = "https://discord.com/api/webhooks/",
-     ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
-     AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua"
- }
- 
- print("Starting: Hatching Scripts")
- loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
- loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
+--// Loader Rev. 1.0.4
+getgenv().Config = {
+    Webhook = "https://discord.com/api/webhooks/",
+    ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
+    AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua",
+
+    --// Config | Change the key in the "" to update keybind
+    AntiAFKBind = "R"
+}
+
+print("Starting: Hatching Scripts")
+loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
+loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
 ```
 
 ## For MoonX + BSGI Scripts
 
 ```lua
---// Loader
- getgenv().Config = {
-     Webhook = "https://discord.com/api/webhooks/",
-     ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
-     AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua"
- }
- 
- print("Starting: Hatching Scripts")
- loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
- loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
- loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
+--// Loader Rev. 1.0.4
+getgenv().Config = {
+    Webhook = "https://discord.com/api/webhooks/",
+    ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
+    AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua",
+
+    --// Config | Change the key in the "" to update keybind
+    AntiAFKBind = "R"
+}
+
+print("Starting: Hatching Scripts")
+loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
+loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
 ```
 
 ## Explaination on Webhook
