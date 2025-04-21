@@ -40,7 +40,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/ma
 ## Explaination on Webhook
 Webhook only sends Legendary and Secret. Thats it really simple.
 
-![WebhookDEMO1](https://img.aliensbald.com/u/OdGXCS.png)
+![WebhookDEMO1](https://img.aliensbald.com/u/Yu3if1.png)
 
 
 ## License
