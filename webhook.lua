@@ -15,8 +15,8 @@ local player = game.Players.LocalPlayer
 local httpService = game:GetService("HttpService")
 local runService = game:GetService("RunService")
 
--- Pet image database
 local petImages = {
+    -- Base Legendary Images
     ["Emerald Golem"] = "https://static.wikia.nocookie.net/bgs-infinity/images/8/8f/Emerald_Golem.png/revision/latest?cb=20250412234012",
     ["Inferno Dragon"] = "https://static.wikia.nocookie.net/bgs-infinity/images/0/06/Inferno_Dragon.png/revision/latest?cb=20250412205317",
     ["Flying Pig"] = "https://static.wikia.nocookie.net/bgs-infinity/images/1/18/Flying_Pig.png/revision/latest?cb=20250412142625",
@@ -37,7 +37,7 @@ local petImages = {
     ["MAN FACE GOD"] = "https://static.wikia.nocookie.net/bgs-infinity/images/1/1b/MAN_FACE_GOD.png/revision/latest?cb=20250414020316",
     ["The Overlord"] = "https://static.wikia.nocookie.net/bgs-infinity/images/c/c0/The_Overlord.png/revision/latest?cb=20250413130318",
     ["King Doggy"] = "https://static.wikia.nocookie.net/bgs-infinity/images/a/a8/King_Doggy.png/revision/latest?cb=20250412152038",
-    --// Limited Edition Pets | Will be removed after update over //
+    -- Event Pets
     ["Seraphic Bunny"] = "https://static.wikia.nocookie.net/bgs-infinity/images/d/d7/Seraphic_Bunny.png/revision/latest/scale-to-width-down/130?cb=20250418234258",
     ["Ethereal Bunny"] = "https://static.wikia.nocookie.net/bgs-infinity/images/b/b9/Ethereal_Bunny.png/revision/latest/scale-to-width-down/130?cb=20250419000116",
     ["Cardinal Bunny"] = "https://static.wikia.nocookie.net/bgs-infinity/images/3/33/Cardinal_Bunny.png/revision/latest/scale-to-width-down/130?cb=20250419014509",
@@ -47,9 +47,7 @@ local petImages = {
     ["Giant Chocolate Chicken"] = "https://static.wikia.nocookie.net/bgs-infinity/images/e/ef/Giant_Chocolate_Chicken.png/revision/latest/scale-to-width-down/130?cb=20250419001410"
 }
 
--- Fallback image
 local fallbackImage = "https://static.wikia.nocookie.net/bgs-infinity/images/7/73/Common_Pet.png"
-
 local recentFrames = {}
 
 local function isRecentFrame(frame)
@@ -61,32 +59,44 @@ local function isRecentFrame(frame)
     return false
 end
 
-local function sendWebhook(name, rarity, image, chance)
-    local title = "🐾 Pet Hatched!"
+local function sendWebhook(name, rarity, shiny, image, chance)
     local rarityLower = rarity:lower()
+    local shinyPrefix = shiny and "✨ Shiny " or ""
+    local baseTitle = "Pet Hatched"
 
     if rarityLower:find("secret") then
-        title = "🌟 Secret Pet Hatched"
-    elseif rarityLower:find("legendary") then
-        title = "⭐ Legendary Pet Hatched"
+        baseTitle = shinyPrefix .. "Secret Pet Hatched"
     elseif rarityLower:find("mythic") then
-        title = "🔥 Mythic Pet Hatched"
+        baseTitle = shinyPrefix .. "Mythic Pet Hatched"
+    elseif rarityLower:find("legendary") then
+        baseTitle = shinyPrefix .. "Legendary Pet Hatched"
     end
 
     local desc = string.format("**__Pet Name:__** %s\n**__Pet Rarity:__** %s\n", name, rarity)
     if chance and chance ~= "" then
         desc = desc .. "**__Chance:__** " .. chance .. "\n"
     end
-    desc = desc .. "**__Catch Date:__** " .. os.date("%Y-%m-%d %H:%M:%S")
+
+    local time = os.time()
+    desc = desc .. "**__Catch Date:__** <t:" .. time .. ":F>"
+
+    local totalHatches = "N/A"
+    local leaderstats = player:FindFirstChild("leaderstats")
+    if leaderstats then
+        local hatches = leaderstats:FindFirstChild("🥚 Hatches")
+        if hatches and hatches:IsA("IntValue") then
+            totalHatches = tostring(hatches.Value)
+        end
+    end
 
     local data = {
         ["content"] = "@everyone",
         ["embeds"] = {{
-            ["title"] = title,
+            ["title"] = baseTitle,
             ["description"] = desc,
             ["color"] = 28927,
             ["footer"] = {
-                ["text"] = "Pet Hatched By: " .. player.Name
+                ["text"] = "Pet Hatched By: " .. player.Name .. " | 🥚 Total Hatches: " .. totalHatches
             },
             ["thumbnail"] = {
                 ["url"] = image or fallbackImage
@@ -115,13 +125,14 @@ local function monitorHatch()
         if frame:IsA("Frame") and frame:FindFirstChild("Label") and frame:FindFirstChild("Rarity") then
             local name = frame.Label.Text
             local rarity = frame.Rarity.Text
+            local shiny = frame:FindFirstChild("Shiny") and frame.Shiny.Visible or false
             local chance = frame:FindFirstChild("Chance") and frame.Chance.Text or nil
             local rarityLower = rarity:lower()
 
             if rarityLower:find("legendary") or rarityLower:find("secret") or rarityLower:find("mythic") then
                 if not isRecentFrame(frame) then
                     local image = petImages[name] or fallbackImage
-                    sendWebhook(name, rarity, image, chance)
+                    sendWebhook(name, rarity, shiny, image, chance)
                     print("📤 Sent webhook for:", name)
                 end
             end
