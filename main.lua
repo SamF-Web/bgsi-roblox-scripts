@@ -1,8 +1,8 @@
---// Loader Rev. 1.0.4
+--// Loader Rev. 1.0.5
 getgenv().Config = {
     Webhook = "https://discord.com/api/webhooks/",
-    ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
-    AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua",
+    ScriptURL = "https://cdn.1ms.network/rblx/webhook.lua",
+    AntiAFKURL = "https://cdn.1ms.network/rblx/antiafk.lua",
 }
 
 print("Starting: Hatching Scripts")
