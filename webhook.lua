@@ -37,19 +37,7 @@ local petImages = {
     ["MAN FACE GOD"] = "https://static.wikia.nocookie.net/bgs-infinity/images/1/1b/MAN_FACE_GOD.png/revision/latest?cb=20250414020316",
     ["The Overlord"] = "https://static.wikia.nocookie.net/bgs-infinity/images/c/c0/The_Overlord.png/revision/latest?cb=20250413130318",
     ["King Doggy"] = "https://static.wikia.nocookie.net/bgs-infinity/images/a/a8/King_Doggy.png/revision/latest?cb=20250412152038",
-    -- Event Pets
-    ["Seraphic Bunny"] = "https://static.wikia.nocookie.net/bgs-infinity/images/d/d7/Seraphic_Bunny.png/revision/latest/scale-to-width-down/130?cb=20250418234258",
-    ["Ethereal Bunny"] = "https://static.wikia.nocookie.net/bgs-infinity/images/b/b9/Ethereal_Bunny.png/revision/latest/scale-to-width-down/130?cb=20250419000116",
-    ["Cardinal Bunny"] = "https://static.wikia.nocookie.net/bgs-infinity/images/3/33/Cardinal_Bunny.png/revision/latest/scale-to-width-down/130?cb=20250419014509",
-    ["Easter Basket"] = "https://static.wikia.nocookie.net/bgs-infinity/images/0/00/Easter_Basket.png/revision/latest/scale-to-width-down/130?cb=20250419001802",
-    ["Sweet Treat"] = "https://static.wikia.nocookie.net/bgs-infinity/images/0/0e/Sweet_Treat.png/revision/latest/scale-to-width-down/130?cb=20250418233529",
-    ["Rainbow Marshmellow"] = "https://static.wikia.nocookie.net/bgs-infinity/images/1/14/Rainbow_Marshmellow.png/revision/latest/scale-to-width-down/130?cb=20250418232506",
-    ["Giant Chocolate Chicken"] = "https://static.wikia.nocookie.net/bgs-infinity/images/e/ef/Giant_Chocolate_Chicken.png/revision/latest/scale-to-width-down/130?cb=20250419001410",
-    ["Easter Serpent"] = "https://static.wikia.nocookie.net/bgs-infinity/images/c/cd/Easter_Serpent.png/revision/latest/scale-to-width-down/130?cb=20250423223156",
-    ["Dualcorn"] = "https://static.wikia.nocookie.net/bgs-infinity/images/b/bc/Dualcorn.png/revision/latest/scale-to-width-down/130?cb=20250423223401",
-    ["Holy Egg"] = "https://static.wikia.nocookie.net/bgs-infinity/images/d/d7/Holy_Egg.png/revision/latest/scale-to-width-down/130?cb=20250423223522",
-    ["Godly Gem"] = "https://static.wikia.nocookie.net/bgs-infinity/images/1/18/Godly_Gem.png/revision/latest?cb=20250423224429",
-    ["Dementor"] = "https://static.wikia.nocookie.net/bgs-infinity/images/5/58/Dementor.png/revision/latest/scale-to-width-down/130?cb=20250423233608",
+
 }
 
 local fallbackImage = "https://static.wikia.nocookie.net/bgs-infinity/images/7/73/Common_Pet.png"
@@ -65,6 +53,11 @@ local function isRecentFrame(frame)
 end
 
 local function sendWebhook(name, rarity, shiny, image, chance)
+    -- Only send if chance is in "x in y" format
+    if chance and not string.find(chance, " in ", 1, true) then
+        return
+    end
+
     local rarityLower = rarity:lower()
     local shinyPrefix = shiny and "✨ Shiny " or ""
     local baseTitle = "Pet Hatched"
@@ -118,6 +111,7 @@ local function sendWebhook(name, rarity, shiny, image, chance)
         Body = httpService:JSONEncode(data)
     })
 end
+
 
 local function monitorHatch()
     local gui = player:FindFirstChild("PlayerGui") and player.PlayerGui:FindFirstChild("ScreenGui")
