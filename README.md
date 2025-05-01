@@ -1,5 +1,5 @@
 # Bubble Gum Simulator INFINITY Scripts
-![VEGAX](https://badge.ttsalpha.com/api?icon=android&label=VEGAX&status=WORKING&color=2bc440&iconColor=ffffff) ![CODEX](https://badge.ttsalpha.com/api?icon=android&label=CODEX&status=WORKING&color=2bc440&iconColor=ffffff) ![Xeno](https://badge.ttsalpha.com/api?icon=nvidia&label=Xeno&status=WORKING&color=2bc440&iconColor=ffffff) ![AWP](https://badge.ttsalpha.com/api?icon=nvidia&label=AWP&status=WORKING&color=2bc440&iconColor=ffffff) ![Gamebuild](https://badge.ttsalpha.com/api?icon=wegame&label=Gamebuild&status=v9677&iconColor=ffffff)
+![VEGAX](https://badge.ttsalpha.com/api?icon=android&label=VEGAX&status=WORKING&color=2bc440&iconColor=ffffff) ![CODEX](https://badge.ttsalpha.com/api?icon=android&label=CODEX&status=WORKING&color=2bc440&iconColor=ffffff) ![Xeno](https://badge.ttsalpha.com/api?icon=nvidia&label=Xeno&status=WORKING&color=2bc440&iconColor=ffffff) ![AWP](https://badge.ttsalpha.com/api?icon=nvidia&label=AWP&status=WORKING&color=2bc440&iconColor=ffffff) ![Gamebuild](https://badge.ttsalpha.com/api?icon=wegame&label=Gamebuild&status=v9781&iconColor=ffffff)
 
 
 This is a archive of my personal scripts for BGSI.
@@ -12,8 +12,8 @@ Use for your favorite executor and copy and paste `main.lua` into the console an
 --// Loader Rev. 1.0.4
 getgenv().Config = {
     Webhook = "https://discord.com/api/webhooks/",
-    ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
-    AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua",
+    ScriptURL = "https://cdn.1ms.network/rblx/webhook.lua",
+    AntiAFKURL = "https://cdn.1ms.network/rblx/antiafk.lua",
 }
 
 print("Starting: Hatching Scripts")
@@ -27,8 +27,8 @@ loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
 --// Loader Rev. 1.0.4
 getgenv().Config = {
     Webhook = "https://discord.com/api/webhooks/",
-    ScriptURL = "https://russia.1ms.network/rblx/webhook.lua",
-    AntiAFKURL = "https://russia.1ms.network/rblx/antiafk.lua",
+    ScriptURL = "https://cdn.1ms.network/rblx/webhook.lua",
+    AntiAFKURL = "https://cdn.1ms.network/rblx/antiafk.lua",
 }
 
 print("Starting: Hatching Scripts")
