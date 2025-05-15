@@ -9,32 +9,34 @@ This is a archive of my personal scripts for BGSI.
 Use for your favorite executor and copy and paste `main.lua` into the console and execute.
 
 ```lua
---// Loader Rev. 1.0.4
+--// Loader Rev. 1.0.5
 getgenv().Config = {
     Webhook = "https://discord.com/api/webhooks/",
-    ScriptURL = "https://cdn.1ms.network/rblx/webhook.lua",
-    AntiAFKURL = "https://cdn.1ms.network/rblx/antiafk.lua",
+    ScriptURL = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/webhook.lua",
+    AntiAFKURL = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/antiafk.lua",
 }
 
 print("Starting: Hatching Scripts")
 loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
 loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
+
 ```
 
 ## For MoonX + BSGI Scripts
 
 ```lua
---// Loader Rev. 1.0.4
+--// Loader Rev. 1.0.5
 getgenv().Config = {
     Webhook = "https://discord.com/api/webhooks/",
-    ScriptURL = "https://cdn.1ms.network/rblx/webhook.lua",
-    AntiAFKURL = "https://cdn.1ms.network/rblx/antiafk.lua",
+    ScriptURL = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/webhook.lua",
+    AntiAFKURL = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/antiafk.lua",
 }
 
 print("Starting: Hatching Scripts")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
 loadstring(game:HttpGet(getgenv().Config.ScriptURL))()
 loadstring(game:HttpGet(getgenv().Config.AntiAFKURL))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
+
 ```
 
 ## Explaination on Webhook
