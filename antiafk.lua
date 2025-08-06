@@ -1,22 +1,24 @@
-print("Running: AntiAFK")
 local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
+
+if not getgenv().Config or not getgenv().Config.AntiAFK then
+    print("Anti-AFK is disabled in the config. Script will not run.")
+    return
+end
 
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local keys = {"W", "A", "S", "D"}
-local moveDistance = 1  -- studs
-local interval = 60  -- seconds between AFK moves
+local moveDistance = 1 
+local antiAFKInterval = 60
 
 local function pressKey(key)
     VirtualInputManager:SendKeyEvent(true, key, false, game)
     task.wait(0.2)
     VirtualInputManager:SendKeyEvent(false, key, false, game)
 end
-
 local function movePlayerAwayAndBack()
     local originalCFrame = humanoidRootPart.CFrame
     local direction = Vector3.new(0, 0, 0)
@@ -34,12 +36,12 @@ local function movePlayerAwayAndBack()
 
     pressKey(randomKey)
     humanoidRootPart.CFrame = originalCFrame + direction
-    task.wait(1)
+    task.wait(2)
     humanoidRootPart.CFrame = originalCFrame
     pressKey("R")
 end
 
 while true do
-    task.wait(interval)
+    task.wait(antiAFKInterval)
     pcall(movePlayerAwayAndBack)
 end
