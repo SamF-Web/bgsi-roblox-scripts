@@ -2,10 +2,11 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RemoteFunction = ReplicatedStorage.Shared.Framework.Network.Remote.RemoteFunction
 
 if not getgenv().Config or not getgenv().Config.ClaimPlaytime then
-    print("Playtime claiming is disabled in the config. Script will not run.")
+    print("Auto-claiming playtime is disabled in the config. Script will not run.")
     return
 end
-local WAIT_TIME = 30
+
+local playtimeClaimInterval = 30
 
 local function claimPlaytime(index)
     local args = {
@@ -18,16 +19,27 @@ local function claimPlaytime(index)
     end)
     
     if success then
-        print(string.format("Successfully attempted to claim Playtime %d. Result: %s", index, tostring(result)))
+        print(string.format("✅ Playtime Claimer: Successfully attempted to claim Playtime %d. Result: %s", index, tostring(result)))
     else
-        warn(string.format("Failed to claim Playtime %d. Error: %s", index, result))
+        warn(string.format("❌ Playtime Claimer: Failed to claim Playtime %d. Error: %s", index, result))
     end
 end
 
+local lastPlaytimeClaim = 0
+
 while true do
-    for i = 1, 9 do
-        claimPlaytime(i)
-        task.wait(1)
+    local currentTime = tick()
+    
+    if currentTime - lastPlaytimeClaim >= playtimeClaimInterval then
+        print("--- Starting new playtime claim cycle ---")
+        for i = 1, 9 do
+            print(string.format("Attempting to claim Playtime event %d...", i))
+            claimPlaytime(i)
+            task.wait(1)
+        end
+        print(string.format("--- Cycle complete. Next cycle in %d seconds ---", playtimeClaimInterval))
+        lastPlaytimeClaim = currentTime
     end
-    task.wait(WAIT_TIME)
+    
+    task.wait(5)
 end
