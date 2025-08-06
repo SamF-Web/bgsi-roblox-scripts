@@ -6,6 +6,8 @@ if not getgenv().Config or not getgenv().Config.AntiAFK then
     return
 end
 
+print("Running: AntiAFK")
+
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -43,5 +45,6 @@ end
 
 while true do
     task.wait(antiAFKInterval)
+    
     pcall(movePlayerAwayAndBack)
 end
