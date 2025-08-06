@@ -95,21 +95,21 @@ end
 local function monitorHatch()
     local gui = player:FindFirstChild("PlayerGui") and player.PlayerGui:FindFirstChild("ScreenGui")
     if not gui then return end
-
     local hatch = gui:FindFirstChild("Hatching")
     if not hatch then return end
-
     for _, frame in ipairs(hatch:GetChildren()) do
         if frame:IsA("Frame") and frame:FindFirstChild("Label") and frame:FindFirstChild("Rarity") then
             local name = frame.Label.Text
             local rarity = frame.Rarity.Text
-            local shiny = frame:FindFirstChild("Shiny") and frame.Shiny.Visible or false
+            local shiny = frame.Shiny.Visible
+            local deleted = frame.Deleted.Visible
             local chance = frame:FindFirstChild("Chance") and frame.Chance.Text or nil
             local rarityLower = rarity:lower()
-
             if rarityLower:find("legendary") or rarityLower:find("secret") or rarityLower:find("mythic") then
-                if not isRecentFrame(frame) then
-                    sendWebhook(name, rarity, shiny, chance)
+                if not deleted then
+                    if not isRecentFrame(frame) then
+                        sendWebhook(name, rarity, shiny, chance)
+                    end
                 end
             end
         end
