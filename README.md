@@ -53,7 +53,7 @@ loadstring(game:HttpGet(getgenv().Config.AntiAFKScript))()
 ## Explaination on Webhook
 Webhook only sends Legendary and Secret. Thats it really simple.
 
-![WebhookDEMO1](https://img.aliensbald.com/u/Yu3if1.png)
+![WebhookDEMO1](https://img.files.cheap/u/6iYr3k.png)
 
 
 ## License
