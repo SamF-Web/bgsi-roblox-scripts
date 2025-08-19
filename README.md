@@ -22,7 +22,7 @@ getgenv().Config = {
     --// Webhook Settings
     Webhook_enabled = true,
     Discord_ID = "DISCORDID",
-    Webhook = "https://discord.com/api/webhooks,
+    Webhook = "https://discord.com/api/webhooks/",
     Ignore_AutoDeleted = true, --// Dont disable this unless you want your webhook flooded
     Secret_Only = false,
 
