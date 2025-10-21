@@ -20,28 +20,15 @@ local positions = {
     Vector3.new(-5033.55, 22.37, -620.40)
 }
 
-local function walkTo(targetPos)
-    humanoid:MoveTo(targetPos)
-    humanoid.MoveToFinished:Wait()
-end
-
-local function walkCycle(pos)
-    if not (character and humanoid and rootPart) then
-        return
-    end
-    rootPart.CFrame = CFrame.new(pos)
-    task.wait(1)
-    local awayPos = pos + (rootPart.CFrame.LookVector * 10)
-    walkTo(awayPos)
-    task.wait(1)
-    walkTo(pos)
+local function dropOnto(pos)
+    rootPart.CFrame = CFrame.new(pos + Vector3.new(0, 10, 0))
 end
 
 local function startTrickOrTreatLoop()
     task.spawn(function()
         while true do
             for _, pos in ipairs(positions) do
-                walkCycle(pos)
+                dropOnto(pos)
                 task.wait(5)
             end
         end
