@@ -1,7 +1,7 @@
-print("[OK] Running TrickOrTreat Farm Script")
+print("[OK] Running TrickOrTreat Teleport Script")
 
 if not getgenv().Config or not getgenv().Config.TrickOrTreat then
-    warn("[Alert] You currently have TrickOrTreat Farm disabled.")
+    warn("[Alert] You currently have TrickOrTreat teleporting disabled.")
     return
 end
 
@@ -18,11 +18,19 @@ local positions = {
     Vector3.new(-5033.55, 22.37, -620.40)
 }
 
-local function teleportTo(pos)
-    if character and character:FindFirstChild("HumanoidRootPart") then
-        character:MoveTo(pos)
-    else
+local function teleportAndJump(pos)
+    if not (character and character:FindFirstChild("HumanoidRootPart")) then
         warn("[ERR] Character or HumanoidRootPart not found.")
+        return
+    end
+
+    character:MoveTo(pos)
+    print(string.format("[OK] Teleported to: (%.2f, %.2f, %.2f)", pos.X, pos.Y, pos.Z))
+
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        task.wait(0.2)
+        humanoid.Jump = true
     end
 end
 
@@ -30,7 +38,8 @@ local function startTrickOrTreatLoop()
     task.spawn(function()
         while true do
             for _, pos in ipairs(positions) do
-                teleportTo(pos)
+                teleportAndJump(pos)
+                task.wait(1)
                 task.wait(5)
             end
         end
