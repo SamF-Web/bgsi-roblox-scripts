@@ -50,16 +50,3 @@ loadstring(game:HttpGet(getgenv().Config.PotionScript))()
 loadstring(game:HttpGet(getgenv().Config.AntiAFKScript))()
 loadstring(game:HttpGet(getgenv().Config.BoosterScript))()
 ```
-
-
-## Explaination on Webhook
-Webhook only sends Legendary and Secret. Thats it really simple.
-
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-
-## Donation Shirt Robux
-[Shirt Link](https://www.roblox.com/catalog/71032498937806/chiller)
