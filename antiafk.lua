@@ -2,11 +2,11 @@ local Players = game:GetService("Players")
 local VirtualInputManager = game:GetService("VirtualInputManager")
 
 if not getgenv().Config or not getgenv().Config.AntiAFK then
-    print("Anti-AFK is disabled in the config. Script will not run.")
+    print("[Alert] You currently have AntiAFK disabled.")
     return
 end
 
-print("Running: AntiAFK")
+print("[OK] Running AntiAFK")
 
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()

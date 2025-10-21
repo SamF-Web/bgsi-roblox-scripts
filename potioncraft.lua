@@ -1,5 +1,5 @@
 if not getgenv().Config or not getgenv().Config.MaxPotionCraft then return end
-print("Running: Auto Craft Potions")
+print("[OK] Running Potion Craft")
 
 local re = game:GetService("ReplicatedStorage"):WaitForChild("Shared", 10)
     :WaitForChild("Framework", 10):WaitForChild("Network", 10)
@@ -14,7 +14,6 @@ task.spawn(function()
                 local ok, err = pcall(function()
                     re:FireServer("CraftPotion", p, t, true)
                 end)
-                if ok then print("✅", p, "T" .. t) else warn("❌", p, "T" .. t, err) end
                 task.wait(2)
             end
         end

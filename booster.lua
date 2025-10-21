@@ -1,9 +1,9 @@
 if not getgenv().Config then
-    warn("⚠️ FPS Booster is disabled or the configuration table was not found. Script will not run.")
+    warn("[Alert] You currently have FPS Booster disabled.")
     return
 end
 
-print("✅ FPS Booster script loaded.")
+print("[OK] FPS Booster")
 
 if getgenv().Config.LowGraphics then
     local Lighting = game:GetService("Lighting")
@@ -21,7 +21,7 @@ if getgenv().Config.LowGraphics then
             Lighting.DepthOfFieldEnabled = false
             Lighting.SunRaysEnabled = false
         end)
-        print("✅ Disabled lighting effects.")
+        print("[FPS-DG] Disabled lighting effects.")
         local function disableShadows(instance)
             if instance:IsA("BasePart") then
                 pcall(function()
@@ -37,7 +37,7 @@ if getgenv().Config.LowGraphics then
         Workspace.DescendantAdded:Connect(function(descendant)
             disableShadows(descendant)
         end)
-        print("✅ Disabled shadows on all parts.")
+        print("[FPS-DG] Disabled shadows on all parts.")
         local function disableNameAndHealth(character)
             if character and character:FindFirstChildOfClass("Humanoid") then
                 character.Humanoid.HealthDisplayType = Enum.HumanoidHealthDisplayType.AlwaysOff
@@ -49,7 +49,7 @@ if getgenv().Config.LowGraphics then
             end
             p.CharacterAdded:Connect(disableNameAndHealth)
         end
-        print("✅ Disabled humanoid health and name displays.")
+        print("[FPS-DG] Disabled humanoid health and name displays.")
     end
     if player.Character then
         optimizeGraphics()
@@ -57,8 +57,6 @@ if getgenv().Config.LowGraphics then
         player.CharacterAdded:Wait()
         optimizeGraphics()
     end
-
-    print("🎉 Low graphics mode initialized successfully!")
 end
 
 if getgenv().Config.FPS then
@@ -68,11 +66,11 @@ if getgenv().Config.FPS then
             game.Engine.TargetFps = targetFps
         end)
         if success then
-            print("✅ Successfully set target FPS to " .. targetFps .. ".")
+            print("[FPS-DG] Successfully set target FPS to " .. targetFps .. ".")
         else
-            warn("❌ Failed to set target FPS. " .. tostring(err))
+            warn("[FPS-DG] Failed to set target FPS. " .. tostring(err))
         end
     else
-        warn("⚠️ Invalid FPS value provided in the configuration. Please provide a number.")
+        warn("[FPS-DG] Invalid FPS value provided in the configuration. Please provide a number.")
     end
 end

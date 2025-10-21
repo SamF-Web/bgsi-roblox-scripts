@@ -1,7 +1,7 @@
-print("Running: Auto Claim Playtime")
+print("[OK] Running Playtime Claim")
 
 if not getgenv().Config or not getgenv().Config.ClaimPlaytime then
-    warn("⚠️ Auto-claiming playtime is disabled in the config.")
+    warn("[Alert] You currently have Playtime Claim disabled.")
     return
 end
 
@@ -16,7 +16,7 @@ local success, RemoteFunction = pcall(function()
 end)
 
 if not success or not RemoteFunction then
-    warn("❌ Failed to find RemoteFunction. Playtime claiming will not run.")
+    warn("[ERR] Playtime requirements not found.")
     return
 end
 
@@ -28,17 +28,9 @@ local function claimAllPlaytime()
                     [1] = "ClaimPlaytime",
                     [2] = i
                 }
-
                 local ok, result = pcall(function()
                     return RemoteFunction:InvokeServer(unpack(args))
                 end)
-
-                if ok then
-                    print("🎁 Claimed Playtime " .. i)
-                else
-                    warn("❌ Failed to claim Playtime " .. i .. ": " .. tostring(result))
-                end
-
                 task.wait(1.5) 
             end
 

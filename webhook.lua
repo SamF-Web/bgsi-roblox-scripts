@@ -6,7 +6,7 @@ local httpRequest =
     (request)
 
 if not httpRequest then
-    warn("⚠️ No supported HTTP request method found!")
+    warn("[WARN] HTTP Support not found.")
     return
 end
 
@@ -14,12 +14,12 @@ local player = game.Players.LocalPlayer
 local httpService = game:GetService("HttpService")
 local runService = game:GetService("RunService")
 
-local fallbackImage = "https://static.wikia.nocookie.net/bgs-infinity/images/7/73/Common_Pet.png"
+local fallbackImage = "https://static.wikia.nocookie.net/bgs-infinity/images/6/67/Playtime_Icon.png/revision/latest/scale-to-width-down/100?cb=20250502035843"
 local recentFrames = {}
 
 local function isRecentFrame(frame)
     local id = tostring(frame)
-    if recentFrames[id] and tick() - recentFrames[id] < 10 then
+    if recentFrames[id] and tick() - recentFrames[id] < 5 then
         return true
     end
     recentFrames[id] = tick()
