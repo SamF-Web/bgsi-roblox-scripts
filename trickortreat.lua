@@ -8,6 +8,8 @@ end
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local rootPart = character:WaitForChild("HumanoidRootPart")
 
 local positions = {
     Vector3.new(-5035.52, 25.16, -547.86),
@@ -18,28 +20,28 @@ local positions = {
     Vector3.new(-5033.55, 22.37, -620.40)
 }
 
-local function teleportAndJump(pos)
-    if not (character and character:FindFirstChild("HumanoidRootPart")) then
-        warn("[ERR] Character or HumanoidRootPart not found.")
+local function walkTo(targetPos)
+    humanoid:MoveTo(targetPos)
+    humanoid.MoveToFinished:Wait()
+end
+
+local function walkCycle(pos)
+    if not (character and humanoid and rootPart) then
         return
     end
-
-    character:MoveTo(pos)
-    print(string.format("[OK] Teleported to: (%.2f, %.2f, %.2f)", pos.X, pos.Y, pos.Z))
-
-    local humanoid = character:FindFirstChildOfClass("Humanoid")
-    if humanoid then
-        task.wait(0.2)
-        humanoid.Jump = true
-    end
+    rootPart.CFrame = CFrame.new(pos)
+    task.wait(1)
+    local awayPos = pos + (rootPart.CFrame.LookVector * 10)
+    walkTo(awayPos)
+    task.wait(1)
+    walkTo(pos)
 end
 
 local function startTrickOrTreatLoop()
     task.spawn(function()
         while true do
             for _, pos in ipairs(positions) do
-                teleportAndJump(pos)
-                task.wait(1)
+                walkCycle(pos)
                 task.wait(5)
             end
         end
