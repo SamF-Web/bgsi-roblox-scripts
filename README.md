@@ -9,7 +9,7 @@ This is a archive of my personal scripts for BGSI.
 Use for your favorite executor and copy and paste `main.lua` into the console and execute.
 
 ```lua
---// BGSI Script | Rev. 1.0.9 | BGSI Build v10068
+[--// BGSI Script | Rev. 1.0.9 | BGSI Build v10068
 getgenv().Config = {
     --// General Settings
     ClaimPlaytime = true,
@@ -48,5 +48,5 @@ loadstring(game:HttpGet(getgenv().Config.PlaytimeScript))()
 loadstring(game:HttpGet(getgenv().Config.SeasonPassScript))()
 loadstring(game:HttpGet(getgenv().Config.PotionScript))()
 loadstring(game:HttpGet(getgenv().Config.AntiAFKScript))()
-loadstring(game:HttpGet(getgenv().Config.BoosterScript))()
+loadstring(game:HttpGet(getgenv().Config.BoosterScript))()](https://img.files.cheap/u/gNboF6.gif)
 ```
