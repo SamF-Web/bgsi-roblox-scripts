@@ -48,7 +48,7 @@ loadstring(game:HttpGet(getgenv().Config.PlaytimeScript))()
 loadstring(game:HttpGet(getgenv().Config.SeasonPassScript))()
 loadstring(game:HttpGet(getgenv().Config.PotionScript))()
 loadstring(game:HttpGet(getgenv().Config.AntiAFKScript))()
-loadstring(game:HttpGet(getgenv().Config.BoosterScript))()](https://img.files.cheap/u/gNboF6.gif)
+loadstring(game:HttpGet(getgenv().Config.BoosterScript))()
 ```
 
 ## Event Loader
