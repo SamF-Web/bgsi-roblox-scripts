@@ -9,7 +9,7 @@ This is a archive of my personal scripts for BGSI.
 Use for your favorite executor and copy and paste `main.lua` into the console and execute.
 
 ```lua
-[--// BGSI Script | Rev. 1.0.9 | BGSI Build v10068
+--// BGSI Script | Rev. 1.0.9 | BGSI Build v10068
 getgenv().Config = {
     --// General Settings
     ClaimPlaytime = true,
