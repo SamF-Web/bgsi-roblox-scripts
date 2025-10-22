@@ -32,7 +32,6 @@ local function claimSeasonPass()
             end)
 
             if ok then
-                print("[OK] Season Pass claimed successfully.")
             else
                 warn("[ERR] Failed to claim Season Pass:", err)
             end
@@ -43,3 +42,4 @@ local function claimSeasonPass()
 end
 
 claimSeasonPass()
+
