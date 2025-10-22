@@ -29,7 +29,7 @@ local function startTrickOrTreatLoop()
         while true do
             for _, pos in ipairs(positions) do
                 dropOnto(pos)
-                task.wait(5)
+                task.wait(2)
             end
         end
     end)
