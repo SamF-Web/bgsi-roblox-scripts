@@ -5,7 +5,7 @@ getgenv().Config = {
     MaxPotionCraft = true,
     SeasonPassClaim = true,
 
-    AntiAFK = true, --// if your using a executor that does this for you disable it. [delta auto removes afk]
+    AntiAFK = true, --// if your using a executor that does this for you disable it.
 
     --// Event Scripts
     TrickOrTreat = true, --// You Must be in the halloween world for it to start. [Bubble jump power must be 0]
@@ -18,12 +18,12 @@ getgenv().Config = {
     Secret_Only = false,
 
     --// Anti Scam Settings
-    Allowed_User = "ROBLOXUSERNAME", --// Set this as the account that could trade with you.
+    Allowed_User = "Username", --// Set this as the account that could trade with you.
     AntiTrade = true,
 
     --// Performance Boost
     FPS = "5",
-    LowGraphics = False,
+    LowGraphics = false,
 
     --// Script Files
     WebhookScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/webhook.lua",
@@ -41,4 +41,4 @@ loadstring(game:HttpGet(getgenv().Config.SeasonPassScript))()
 loadstring(game:HttpGet(getgenv().Config.PotionScript))()
 loadstring(game:HttpGet(getgenv().Config.TrickOrTreatScript))()
 loadstring(game:HttpGet(getgenv().Config.AntiAFKScript))()
-
+loadstring(game:HttpGet(getgenv().Config.BoosterScriptt))()
