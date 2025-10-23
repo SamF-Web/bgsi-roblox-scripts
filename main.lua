@@ -1,24 +1,24 @@
---// BGSI Script | Rev. 1.1.0 | BGSI Build v10068
+--// BGSI Script | Rev. 1.1.1 | BGSI Build v10068
 getgenv().Config = {
     --// General Settings
     ClaimPlaytime = true,
     MaxPotionCraft = true,
     SeasonPassClaim = true,
-
-    AntiAFK = true, --// if your using a executor that does this for you disable it.
+    AntiAFK = true,
 
     --// Event Scripts
-    TrickOrTreat = true, --// You Must be in the halloween world for it to start. [Bubble jump power must be 0]
+    EventZone = "First", --// First, Second, Third, Fourth
+    TrickOrTreat = true, --// You Must be in the halloween world for it to start.
 
     --// Webhook Settings
     Webhook_enabled = true,
-    Discord_ID = "DISCORDID",
+    Discord_ID = "discordid",
     Webhook = "https://discord.com/api/webhooks/",
-    Ignore_AutoDeleted = true, --// Dont disable this unless you want your webhook flooded
+    Ignore_AutoDeleted = true,
     Secret_Only = false,
 
     --// Anti Scam Settings
-    Allowed_User = "Username", --// Set this as the account that could trade with you.
+    Allowed_User = "USERNAME", --// Set this as the account that could trade with you.
     AntiTrade = true,
 
     --// Performance Boost
