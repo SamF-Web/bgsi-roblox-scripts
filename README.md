@@ -30,7 +30,7 @@ getgenv().Config = {
     Secret_Only = false,
 
     --// Anti Scam Settings
-    Allowed_User = "Zugkyz", --// Set this as the account that could trade with you.
+    Allowed_User = "robloxname", --// Set this as the account that could trade with you.
     AntiTrade = true,
 
     --// Performance Boost
