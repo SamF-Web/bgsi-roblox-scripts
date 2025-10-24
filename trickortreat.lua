@@ -12,6 +12,43 @@ local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local rootPart = character:WaitForChild("HumanoidRootPart")
+local httpService = game:GetService("HttpService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RemoteEvent = ReplicatedStorage.Shared.Framework.Network.Remote.RemoteEvent
+local ToTWebhook = getgenv().Config.Webhook
+
+RemoteEvent.OnClientEvent:Connect(function(eventType, items)
+    if eventType ~= "ItemsReceived" then return end
+
+    for _, item in ipairs(items) do
+        if item.Type == "Pet" then
+            local petName = item.Name or "Unknown Pet"
+
+            local data = {
+                embeds = {
+                    {
+                        title = "👻 Trick Or Treat Pet Notification",
+                        color = 15176244,
+                        description = string.format("You have gotten the\n> `%s`", petName),
+                        footer = {
+                            text = "Hatched by: " .. player.Name
+                        }
+                    }
+                },
+                components = {}
+            }
+
+            httpRequest({
+                Url = ToTWebhook,
+                Method = "POST",
+                Headers = {
+                    ["Content-Type"] = "application/json"
+                },
+                Body = httpService:JSONEncode(data)
+            })
+        end
+    end
+end)
 
 local zonePositions = {
     ["First"] = {
@@ -58,4 +95,5 @@ local function startTrickOrTreatLoop()
 end
 
 print("[INFO] TrickOrTreat Farm started for EventZone:", selectedZone)
+print("[INFO] TrickOrTreat Farm webhook enabled")
 startTrickOrTreatLoop()
