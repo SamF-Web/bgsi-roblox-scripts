@@ -18,7 +18,7 @@ getgenv().Config = {
     AntiAFK = true,
 
     --// Event Scripts
-    EventZone = "Third", --// First, Second, Third, Fourth
+    EventZone = "First", --// First, Second, Third, Fourth
     TrickOrTreat = true, --// You Must be in the halloween world for it to start.
     ToTWebhook = "https://discord.com/api/webhooks/",
 
@@ -30,7 +30,7 @@ getgenv().Config = {
     Secret_Only = false,
 
     --// Anti Scam Settings
-    Allowed_User = "robloxname", --// Set this as the account that could trade with you.
+    Allowed_User = "ROBLOXNAME", --// Set this as the account that could trade with you.
     AntiTrade = true,
 
     --// Performance Boost
@@ -44,12 +44,10 @@ getgenv().Config = {
     SeasonPassScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/seasonpass.lua",
     PotionScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/potioncraft.lua",
     BoosterScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/booster.lua",
-    TrickOrTreatScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/trickortreat.lua",
-    ToTWebhook = "https://raw.bgsi-botting.xyz/v10068/events/totwebhook.lua",
+    TrickOrTreatScript = "https://raw.bgsi-botting.xyz/v10077/events/trickortreat.lua",
 }
 
 loadstring(game:HttpGet(getgenv().Config.WebhookScript))()
-loadstring(game:HttpGet(getgenv().Config.ToTWebhook))()
 loadstring(game:HttpGet(getgenv().Config.PlaytimeScript))()
 loadstring(game:HttpGet(getgenv().Config.SeasonPassScript))()
 loadstring(game:HttpGet(getgenv().Config.PotionScript))()
