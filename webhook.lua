@@ -95,6 +95,7 @@ end
 local function monitorHatch()
     local gui = player:FindFirstChild("PlayerGui") and player.PlayerGui:FindFirstChild("ScreenGui")
     if not gui then return end
+
     local hatch = gui:FindFirstChild("Hatching")
     if hatch then
         for _, frame in ipairs(hatch:GetChildren()) do
@@ -112,19 +113,37 @@ local function monitorHatch()
             end
         end
     end
+
     local template = gui:FindFirstChild("Template")
     if template then
-        for _, frame in ipairs(template:GetChildren()) do
-            if frame:IsA("Frame") and frame:FindFirstChild("Rarity") then
-                local rarity = frame.Rarity.Text
-                local rarityLower = rarity:lower()
-                if rarityLower:find("secret") and not isRecentFrame(frame) then
-                    local name = frame:FindFirstChild("Label") and frame.Label.Text or "Unknown"
-                    local shiny = frame:FindFirstChild("Shiny") and frame.Shiny.Visible or false
-                    local deleted = frame:FindFirstChild("Deleted") and frame.Deleted.Visible or false
-                    local chance = frame:FindFirstChild("Chance") and frame.Chance.Text or nil
+        for _, obj in ipairs(template:GetDescendants()) do
+            if obj:IsA("TextLabel") and obj.Name == "Rarity" and obj.Visible then
+                local rarityText = obj.Text:lower()
+                if rarityText:find("secret") and not isRecentFrame(obj) then
+                    local frame = obj.Parent
+                    local name = "Unknown"
+                    local chance = "N/A"
+                    local shiny = false
+                    local deleted = false
+
+                    if frame then
+                        if frame:FindFirstChild("Label") then
+                            name = frame.Label.Text
+                        end
+                        if frame:FindFirstChild("Chance") then
+                            chance = frame.Chance.Text
+                        end
+                        if frame:FindFirstChild("Shiny") then
+                            shiny = frame.Shiny.Visible
+                        end
+                        if frame:FindFirstChild("Deleted") then
+                            deleted = frame.Deleted.Visible
+                        end
+                    end
+
                     if not deleted then
-                        sendWebhook(name, rarity, shiny, chance)
+                        sendWebhook(name, "Secret", shiny, chance)
+                        print("[DEBUG] Secret detected:", name, chance)
                     end
                 end
             end
@@ -133,7 +152,7 @@ local function monitorHatch()
 end
 
 if getgenv().Config.Webhook_enabled then
-    runService.RenderStepped:Connect(monitorHatch)
+    runService.Heartbeat:Connect(monitorHatch)
     print("Running: Webhook Alerts")
 else
     print("Webhook Alerts are disabled in the config.")
