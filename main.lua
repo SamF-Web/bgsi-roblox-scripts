@@ -7,19 +7,19 @@ getgenv().Config = {
     AntiAFK = true,
 
     --// Event Scripts
+    AutoBuyEventShop = true, --// Will auto buy the normal halloween shop [NOT THE SHOP WITH THE SECRET]
     EventZone = "First", --// First, Second, Third, Fourth
-    TrickOrTreat = true, --// You Must be in the halloween world for it to start.
-    ToTWebhook = "https://discord.com/api/webhooks/",
+    TrickOrTreat = false,
 
     --// Webhook Settings
     Webhook_enabled = true,
-    Discord_ID = "DISCORDID",
+    Discord_ID = "discordid",
     Webhook = "https://discord.com/api/webhooks/",
     Ignore_AutoDeleted = true,
     Secret_Only = false,
 
     --// Anti Scam Settings
-    Allowed_User = "ROBLOXNAME", --// Set this as the account that could trade with you.
+    Allowed_User = "robloxname", --// Set this as the account that could trade with you.
     AntiTrade = true,
 
     --// Performance Boost
@@ -42,4 +42,4 @@ loadstring(game:HttpGet(getgenv().Config.SeasonPassScript))()
 loadstring(game:HttpGet(getgenv().Config.PotionScript))()
 loadstring(game:HttpGet(getgenv().Config.TrickOrTreatScript))()
 loadstring(game:HttpGet(getgenv().Config.AntiAFKScript))()
-loadstring(game:HttpGet(getgenv().Config.BoosterScriptt))()
+loadstring(game:HttpGet(getgenv().Config.BoosterScript))()
