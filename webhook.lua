@@ -95,28 +95,37 @@ end
 local function monitorHatch()
     local gui = player:FindFirstChild("PlayerGui") and player.PlayerGui:FindFirstChild("ScreenGui")
     if not gui then return end
-
-    for _, descendant in ipairs(gui:GetDescendants()) do
-        if descendant:IsA("TextLabel") and descendant.Name == "Rarity" then
-            local frame = descendant.Parent
-            if frame and frame:IsA("Frame") and frame.Visible and not isRecentFrame(frame) then
-                if frame.Name:lower():find("template") or frame.Name:lower():find("example") then
-                    continue
-                end
-                local label = frame:FindFirstChild("Label")
-                if not label or label.Text == "" or label.Text == "???" then
-                    continue
-                end
-                local name = label.Text
-                local rarity = descendant.Text or "Unknown"
-                local shiny = frame:FindFirstChild("Shiny") and frame.Shiny.Visible or false
-                local deleted = frame:FindFirstChild("Deleted") and frame.Deleted.Visible or false
+    local hatch = gui:FindFirstChild("Hatching")
+    if hatch then
+        for _, frame in ipairs(hatch:GetChildren()) do
+            if frame:IsA("Frame") and frame:FindFirstChild("Label") and frame:FindFirstChild("Rarity") then
+                local name = frame.Label.Text
+                local rarity = frame.Rarity.Text
+                local shiny = frame.Shiny.Visible
+                local deleted = frame.Deleted.Visible
                 local chance = frame:FindFirstChild("Chance") and frame.Chance.Text or nil
                 local rarityLower = rarity:lower()
-
                 if (rarityLower:find("legendary") or rarityLower:find("secret") or rarityLower:find("mythic"))
-                    and not deleted then
+                    and not deleted and not isRecentFrame(frame) then
                     sendWebhook(name, rarity, shiny, chance)
+                end
+            end
+        end
+    end
+    local template = gui:FindFirstChild("Template")
+    if template then
+        for _, frame in ipairs(template:GetChildren()) do
+            if frame:IsA("Frame") and frame:FindFirstChild("Rarity") then
+                local rarity = frame.Rarity.Text
+                local rarityLower = rarity:lower()
+                if rarityLower:find("secret") and not isRecentFrame(frame) then
+                    local name = frame:FindFirstChild("Label") and frame.Label.Text or "Unknown"
+                    local shiny = frame:FindFirstChild("Shiny") and frame.Shiny.Visible or false
+                    local deleted = frame:FindFirstChild("Deleted") and frame.Deleted.Visible or false
+                    local chance = frame:FindFirstChild("Chance") and frame.Chance.Text or nil
+                    if not deleted then
+                        sendWebhook(name, rarity, shiny, chance)
+                    end
                 end
             end
         end
