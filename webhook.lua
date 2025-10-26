@@ -95,11 +95,19 @@ end
 local function monitorHatch()
     local gui = player:FindFirstChild("PlayerGui") and player.PlayerGui:FindFirstChild("ScreenGui")
     if not gui then return end
+
     for _, descendant in ipairs(gui:GetDescendants()) do
         if descendant:IsA("TextLabel") and descendant.Name == "Rarity" then
             local frame = descendant.Parent
-            if frame and frame:IsA("Frame") and not isRecentFrame(frame) then
-                local name = frame:FindFirstChild("Label") and frame.Label.Text or "Unknown"
+            if frame and frame:IsA("Frame") and frame.Visible and not isRecentFrame(frame) then
+                if frame.Name:lower():find("template") or frame.Name:lower():find("example") then
+                    continue
+                end
+                local label = frame:FindFirstChild("Label")
+                if not label or label.Text == "" or label.Text == "???" then
+                    continue
+                end
+                local name = label.Text
                 local rarity = descendant.Text or "Unknown"
                 local shiny = frame:FindFirstChild("Shiny") and frame.Shiny.Visible or false
                 local deleted = frame:FindFirstChild("Deleted") and frame.Deleted.Visible or false
