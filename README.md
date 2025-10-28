@@ -4,6 +4,10 @@
 
 This is a archive of my personal scripts for BGSI.
 
+## Webhook Picture
+![Webhook_Secret](https://img.files.cheap/u/UiH8nx.png)
+
+
 ## Installation
 
 Use for your favorite executor and copy and paste `main.lua` into the console and execute.
