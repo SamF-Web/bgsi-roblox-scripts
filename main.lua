@@ -12,7 +12,8 @@ getgenv().Config = {
     TrickOrTreat = false,
 
     --// Event Minigame
-    Mode = "Easy" --// Easy, Medium, Hard, insane
+    EventMinigame = true, --// set to false if you want to trick or treat farm
+    Mode = "Insane", --// Easy, Medium, Hard, insane
     UseTickets = true, --// uses super tickets [if false will wait the cooldown]
 
 
@@ -24,7 +25,7 @@ getgenv().Config = {
     Secret_Only = false,
 
     --// Anti Scam Settings
-    Allowed_User = "RobloxName", --// Set this as the account that could trade with you.
+    Allowed_User = "ROBLOXNAME", --// Set this as the account that could trade with you.
     AntiTrade = true,
 
     --// Performance Boost
