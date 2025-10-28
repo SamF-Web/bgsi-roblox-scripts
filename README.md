@@ -50,7 +50,7 @@ getgenv().Config = {
     PotionScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/potioncraft.lua",
     BoosterScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/booster.lua",
     TrickOrTreatScript = "https://raw.bgsi-botting.xyz/v10077/events/trickortreat.lua",
-    MinigameScript = "https://raw.bgsi-botting.xyz/v10077/events/minigame.lua"
+    MinigameScript = "https://raw.bgsi-botting.xyz/v10077/events/minigame.lua",
 }
 
 loadstring(game:HttpGet(getgenv().Config.WebhookScript))()
