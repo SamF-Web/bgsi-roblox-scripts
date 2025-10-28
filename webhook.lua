@@ -35,25 +35,8 @@ local function sendWebhook(name, rarity, shiny, chance)
         return
     end
 
-    local rarityLower = rarity:lower()
-    local shinyPrefix = shiny and "✨ Shiny " or ""
-    local baseTitle = "Pet Hatched"
-
-    if rarityLower:find("secret") then
-        baseTitle = shinyPrefix .. "Secret Pet Hatched"
-    elseif rarityLower:find("mythic") then
-        baseTitle = shinyPrefix .. "Mythic Pet Hatched"
-    elseif rarityLower:find("legendary") then
-        baseTitle = shinyPrefix .. "Legendary Pet Hatched"
-    end
-
-    local desc = string.format("**__Pet Name:__** %s\n**__Pet Rarity:__** %s\n", name, rarity)
-    if chance and chance ~= "" then
-        desc = desc .. "**__Chance:__** " .. chance .. "\n"
-    end
-
+    local rarityLower = (rarity and rarity:lower()) or ""
     local time = os.time()
-    desc = desc .. "**__Catch Date:__** <t:" .. time .. ":F>"
 
     local totalHatches = "N/A"
     local leaderstats = player:FindFirstChild("leaderstats")
@@ -65,29 +48,63 @@ local function sendWebhook(name, rarity, shiny, chance)
     end
 
     local discordID = tostring(getgenv().Config.Discord_ID)
-    local mention = ""
-    if discordID and discordID ~= "" then
-        mention = "<@" .. discordID .. ">"
+    local mention = (discordID and discordID ~= "") and ("<@" .. discordID .. ">") or ""
+
+    -- Base setup
+    local imageBase = name:gsub("%s+", "_"):lower()
+    local color = 15761628
+    local authorName = ""
+    local title = ""
+    local thumbnailURL = ""
+    local iconURL = "https://img.files.cheap/u/TvQtay.webp"
+
+    if shiny and rarityLower:find("mythic") then
+        authorName = "You've hatched a Shiny Mythic " .. rarity
+        title = "Shiny Mythic " .. name
+        thumbnailURL = "https://content.bgsi.io/shiny_mythic_" .. imageBase .. ".webp"
+    elseif rarityLower:find("mythic") then
+        authorName = "You've hatched a Mythic " .. rarity
+        title = "Mythic " .. name
+        thumbnailURL = "https://content.bgsi.io/mythic_" .. imageBase .. ".webp"
+    elseif shiny then
+        authorName = "You've hatched a Shiny " .. rarity
+        title = "Shiny " .. name
+        thumbnailURL = "https://content.bgsi.io/shiny_" .. imageBase .. ".webp"
+    else
+        authorName = "You've hatched a " .. rarity
+        title = name
+        thumbnailURL = "https://content.bgsi.io/" .. imageBase .. ".webp"
     end
 
+    local desc = string.format(
+        "🎲  __**Chance**__: %s\n🐣 __**Hatch Date**__: <t:%d:R>\n🥚  __**Hatches**__: %s\n🕵️  __**Hatched By**__: %s",
+        chance or "N/A",
+        time,
+        totalHatches,
+        player.Name
+    )
+
     local data = {
+        ["username"] = "BGSI Pet Hatch",
+        ["avatar_url"] = "https://img.files.cheap/u/BxwpBG.webp",
         ["content"] = mention,
         ["embeds"] = {{
-            ["title"] = baseTitle,
+            ["author"] = {
+                ["name"] = authorName,
+                ["icon_url"] = iconURL
+            },
+            ["color"] = color,
+            ["thumbnail"] = { ["url"] = thumbnailURL },
+            ["title"] = title,
             ["description"] = desc,
-            ["color"] = 28927,
-            ["footer"] = {
-                ["text"] = "Pet Hatched By: " .. player.Name .. " | 🥚 Total Hatches: " .. totalHatches
-            }
+            ["fields"] = {}
         }}
     }
 
     httpRequest({
         Url = getgenv().Config.Webhook,
         Method = "POST",
-        Headers = {
-            ["Content-Type"] = "application/json"
-        },
+        Headers = { ["Content-Type"] = "application/json" },
         Body = httpService:JSONEncode(data)
     })
 end
