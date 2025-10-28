@@ -1,4 +1,4 @@
---// BGSI Script | Rev. 1.1.2 | BGSI Build v10077
+--// BGSI Script | Rev. 1.1.3 | BGSI Build v10077
 getgenv().Config = {
     --// General Settings
     ClaimPlaytime = true,
@@ -11,15 +11,20 @@ getgenv().Config = {
     EventZone = "First", --// First, Second, Third, Fourth
     TrickOrTreat = false,
 
+    --// Event Minigame
+    Mode = "Easy" --// Easy, Medium, Hard, insane
+    UseTickets = true, --// uses super tickets [if false will wait the cooldown]
+
+
     --// Webhook Settings
     Webhook_enabled = true,
-    Discord_ID = "discordid",
+    Discord_ID = "DiscordID",
     Webhook = "https://discord.com/api/webhooks/",
     Ignore_AutoDeleted = true,
     Secret_Only = false,
 
     --// Anti Scam Settings
-    Allowed_User = "robloxname", --// Set this as the account that could trade with you.
+    Allowed_User = "RobloxName", --// Set this as the account that could trade with you.
     AntiTrade = true,
 
     --// Performance Boost
@@ -34,6 +39,7 @@ getgenv().Config = {
     PotionScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/potioncraft.lua",
     BoosterScript = "https://raw.githubusercontent.com/SamF-Web/bgsi-roblox-scripts/refs/heads/main/booster.lua",
     TrickOrTreatScript = "https://raw.bgsi-botting.xyz/v10077/events/trickortreat.lua",
+    MinigameScript = "https://raw.bgsi-botting.xyz/v10077/events/minigame.lua"
 }
 
 loadstring(game:HttpGet(getgenv().Config.WebhookScript))()
@@ -41,5 +47,6 @@ loadstring(game:HttpGet(getgenv().Config.PlaytimeScript))()
 loadstring(game:HttpGet(getgenv().Config.SeasonPassScript))()
 loadstring(game:HttpGet(getgenv().Config.PotionScript))()
 loadstring(game:HttpGet(getgenv().Config.TrickOrTreatScript))()
+loadstring(game:HttpGet(getgenv().Config.MinigameScript))()
 loadstring(game:HttpGet(getgenv().Config.AntiAFKScript))()
 loadstring(game:HttpGet(getgenv().Config.BoosterScript))()
