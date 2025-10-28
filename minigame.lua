@@ -1,29 +1,44 @@
+print("[OK] Minigame Script loaded.")
+
+if not getgenv().Config or not getgenv().Config.EventMinigame then return end
+
 local MINIGAME_NAME = "Spooky Darts"
-local MINIGAME_DURATION_SECONDS = 60
+local MIN_DURATION = 45
+local MAX_DURATION = 60
+local COOLDOWN_WAIT_SECONDS = 20 * 60
 
-local config = getgenv().Config and getgenv().Config.EventMinigame
-
-if not config or not config.Mode then
-    return
-end
-
-local selectedMode = config.Mode
-local useTickets = config.UseTickets or false
+local selectedMode = getgenv().Config.Mode or "Easy"
+local useTickets = getgenv().Config.UseTickets or false
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RemoteEvent = ReplicatedStorage.Shared.Framework.Network.Remote.RemoteEvent
 
-local function runMinigameCycle()
-    if useTickets then
-        RemoteEvent:FireServer("SkipMinigameCooldown", MINIGAME_NAME)
-        task.wait(0.5)
+local success, RemoteEvent = pcall(function()
+    return ReplicatedStorage:WaitForChild("Shared", 10)
+        :WaitForChild("Framework", 10)
+        :WaitForChild("Network", 10)
+        :WaitForChild("Remote", 10)
+        :WaitForChild("RemoteEvent", 10)
+end)
+
+if not success or not RemoteEvent then return end
+
+math.randomseed(tick())
+
+task.spawn(function()
+    while true do
+        local ok = pcall(function()
+            RemoteEvent:FireServer("SkipMinigameCooldown", MINIGAME_NAME)
+            task.wait(0.5)
+            RemoteEvent:FireServer("StartMinigame", MINIGAME_NAME, selectedMode)
+            task.wait(math.random(MIN_DURATION, MAX_DURATION))
+            RemoteEvent:FireServer("FinishMinigame")
+            task.wait(5)
+        end)
+        if not ok then task.wait(5) end
+        if not useTickets then
+            task.wait(COOLDOWN_WAIT_SECONDS)
+        else
+            task.wait(1)
+        end
     end
-
-    RemoteEvent:FireServer("StartMinigame", MINIGAME_NAME, selectedMode)
-
-    task.wait(MINIGAME_DURATION_SECONDS)
-
-    RemoteEvent:FireServer("FinishMinigame")
-end
-
-task.spawn(runMinigameCycle)
+end)
