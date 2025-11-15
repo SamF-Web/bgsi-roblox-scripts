@@ -21,6 +21,7 @@ local function pressKey(key)
     task.wait(0.2)
     VirtualInputManager:SendKeyEvent(false, key, false, game)
 end
+
 local function movePlayerAwayAndBack()
     local originalCFrame = humanoidRootPart.CFrame
     local direction = Vector3.new(0, 0, 0)
@@ -43,8 +44,9 @@ local function movePlayerAwayAndBack()
     pressKey("R")
 end
 
-while true do
-    task.wait(antiAFKInterval)
-    
-    pcall(movePlayerAwayAndBack)
-end
+task.spawn(function()
+    while true do
+        task.wait(antiAFKInterval)
+        pcall(movePlayerAwayAndBack)
+    end
+end)
